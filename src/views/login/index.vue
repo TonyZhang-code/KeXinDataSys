@@ -6,6 +6,7 @@
         <div class="view-account-top-logo">
           <img :src="websiteConfig.loginImage" alt="" />
         </div>
+        <div class="view-account-divider"></div>
         <div class="view-account-top-desc">{{ websiteConfig.loginDesc }}</div>
       </div>
       <div class="view-account-form">
@@ -56,23 +57,6 @@
           </n-form-item>
           <n-form-item class="default-color">
             <div class="flex view-account-other">
-              <div class="flex-initial">
-                <span>其它登录方式</span>
-              </div>
-              <div class="flex-initial mx-2">
-                <a href="javascript:">
-                  <n-icon size="24" color="#2d8cf0">
-                    <LogoGithub />
-                  </n-icon>
-                </a>
-              </div>
-              <div class="flex-initial mx-2">
-                <a href="javascript:">
-                  <n-icon size="24" color="#2d8cf0">
-                    <LogoFacebook />
-                  </n-icon>
-                </a>
-              </div>
               <div class="flex-initial" style="margin-left: auto">
                 <a href="javascript:">注册账号</a>
               </div>
@@ -175,9 +159,23 @@
       text-align: center;
 
       &-desc {
-        font-size: 14px;
-        color: #808695;
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        margin-top: 16px;
       }
+    }
+
+    &-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #18a058, #36ad6a, #18a058);
+      margin: 20px auto;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(24, 160, 88, 0.2);
     }
 
     &-other {

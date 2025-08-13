@@ -180,10 +180,15 @@ function openCart() {
   // TODO: 打开购物车弹窗或跳转购物车页面
 }
 function viewDetail(item) {
+  console.log('点击查看详情，item:', item)
   // 跳转到详情页面
   router.push({
     name: 'portal_catalog_detail',
     params: { id: item.id }
+  }).then(() => {
+    console.log('路由跳转成功')
+  }).catch(err => {
+    console.error('路由跳转失败:', err)
   })
 }
 function addToCart(item) {

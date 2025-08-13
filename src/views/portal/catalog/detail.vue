@@ -3,9 +3,6 @@
     <!-- 返回按钮 -->
     <div style="margin-bottom: 16px;">
       <n-button @click="goBack" style="margin-right: 8px;">
-        <template #icon>
-          <n-icon><ArrowLeftOutlined /></n-icon>
-        </template>
         返回列表
       </n-button>
     </div>
@@ -14,7 +11,6 @@
     <n-card :bordered="false" style="margin-bottom: 16px;">
       <template #header>
         <div style="display: flex; align-items: center; gap: 8px;">
-          <n-icon size="20"><DatabaseOutlined /></n-icon>
           <span>{{ detailInfo.name }}</span>
         </div>
       </template>
@@ -48,10 +44,7 @@
     <!-- 数据清单 -->
     <n-card :bordered="false" style="margin-bottom: 16px;">
       <template #header>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <n-icon size="18"><TableOutlined /></n-icon>
-          <span>数据清单</span>
-        </div>
+        <span>数据清单</span>
       </template>
       
       <n-data-table 
@@ -65,10 +58,7 @@
     <!-- 数据表 -->
     <n-card :bordered="false">
       <template #header>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <n-icon size="18"><FileTextOutlined /></n-icon>
-          <span>数据表</span>
-        </div>
+        <span>数据表</span>
       </template>
       
       <n-data-table 
@@ -84,7 +74,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ArrowLeftOutlined, DatabaseOutlined, TableOutlined, FileTextOutlined } from '@vicons/antd'
 
 const route = useRoute()
 const router = useRouter()

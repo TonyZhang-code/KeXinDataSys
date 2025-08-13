@@ -101,7 +101,7 @@ const detailInfo = ref({
 const catalogColumns = [
   { title: '数据对象', key: 'dataObject', align: 'left' },
   { title: '数据类型', key: 'dataType', align: 'center', width: 120 },
-  { title: '字段历史', key: 'fieldHistory', align: 'center', width: 120 },
+  { title: '字段描述', key: 'fieldHistory', align: 'center', width: 120 },
   { title: '配置主键', key: 'primaryKey', align: 'center', width: 100 }
 ]
 

@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'catalog/detail/:id?',
         name: 'portal_catalog_detail',
         component: () => import('@/views/portal/catalog/detail.vue'),
-        meta: { title: '数据详情', hideInMenu: true }
+        meta: { title: '数据详情', hidden: true }
       },
       {
         path: 'myapply',

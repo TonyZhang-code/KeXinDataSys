@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, h } from 'vue'
+import { NTag } from 'naive-ui'
 
 const searchForm = ref({
   type: null,
@@ -157,7 +158,7 @@ const columns = [
     width: 100,
     render(row) {
       const color = row.status === '进行中' ? 'primary' : row.status === '已通过' ? 'success' : 'warning'
-      return <n-tag type={color}>{row.status}</n-tag>
+      return h(NTag, { type: color }, { default: () => row.status })
     }
   },
   {
@@ -167,7 +168,7 @@ const columns = [
     width: 100,
     render(row) {
       const color = row.type === '数据验证' ? 'warning' : row.type === '接口数据' ? 'success' : 'info'
-      return <n-tag type={color}>{row.type}</n-tag>
+      return h(NTag, { type: color }, { default: () => row.type })
     }
   },
   {
@@ -182,9 +183,16 @@ const columns = [
     align: 'center',
     width: 180,
     render(row) {
-      return row.actions.map((action, idx) => (
-        <span style={{ color: '#1976d2', cursor: 'pointer', marginRight: idx < row.actions.length - 1 ? '12px' : '0', textDecoration: 'underline' }}>{action}</span>
-      ))
+      return row.actions.map((action, idx) => 
+        h('span', { 
+          style: { 
+            color: '#1976d2', 
+            cursor: 'pointer', 
+            marginRight: idx < row.actions.length - 1 ? '12px' : '0', 
+            textDecoration: 'underline' 
+          } 
+        }, action)
+      )
     }
   }
 ]

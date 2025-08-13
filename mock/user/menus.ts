@@ -35,8 +35,8 @@ const menusList = [
     component: 'LAYOUT',
     meta: { title: '可信数据门户系统', icon: 'DatabaseOutlined' },
     children: [
-      { path: 'catalog', name: 'portal_catalog', component: '/portal/catalog', meta: { title: '数据目录浏览与申请' } },
-      { path: 'my-apply', name: 'portal_myapply', component: '/portal/myapply', meta: { title: '我的申请管理' } },
+    { path: 'catalog', name: 'portal_catalog', component: '/portal/catalog/index', meta: { title: '数据目录浏览与申请' } },
+  { path: 'myapply', name: 'portal_myapply', component: '/portal/myapply/index', meta: { title: '我的申请管理' } },
       { path: 'access', name: 'portal_access', component: '/portal/access', meta: { title: '数据访问与交付' } },
       { path: 'messages', name: 'portal_messages', component: '/portal/messages', meta: { title: '通知与消息' } },
     ],

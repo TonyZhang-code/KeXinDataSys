@@ -1,11 +1,10 @@
 import { RouteRecordRaw } from 'vue-router';
-import { Layout } from '@/router/constant';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/portal',
     name: 'portal',
-    component: Layout,
+    component: () => import('@/layout/index.vue'),
     meta: { title: '可信数据门户系统', icon: 'DatabaseOutlined' },
     children: [
       {

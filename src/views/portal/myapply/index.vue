@@ -134,7 +134,7 @@ const pageCount = ref(2)
 
 const columns = [
   {
-    title: '数据名称',
+    title: '申请项目名称',
     key: 'name',
     align: 'left',
     ellipsis: true

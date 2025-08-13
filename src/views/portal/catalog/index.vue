@@ -80,7 +80,7 @@
             </div>
           </div>
           <div style="display: flex; gap: 12px; margin-top: 12px; align-items: flex-end; margin-left: 70px;">
-            <n-button size="small" style="min-width: 80px; height: 33px;">查看详情</n-button>
+            <n-button size="small" style="min-width: 80px; height: 33px;" @click="viewDetail(item)">查看详情</n-button>
             <n-button type="primary" size="small" style="min-width: 100px; height: 33px;" @click="addToCart(item)">添加购物车</n-button>
           </div>
         </div>
@@ -92,7 +92,9 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const cartCount = ref(0)
 import { ShoppingCartOutlined } from '@vicons/antd'
 
@@ -178,7 +180,11 @@ function openCart() {
   // TODO: 打开购物车弹窗或跳转购物车页面
 }
 function viewDetail(item) {
-  // TODO: 查看详情弹窗
+  // 跳转到详情页面
+  router.push({
+    name: 'portal_catalog_detail',
+    params: { id: item.id }
+  })
 }
 function addToCart(item) {
   cartCount.value++

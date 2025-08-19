@@ -6,6 +6,9 @@ import App from './App.vue';
 import router, { setupRouter } from './router';
 import { setupStore } from '@/store';
 
+// 导入路由调试工具
+import './utils/routeStatus';
+
 async function bootstrap() {
   const app = createApp(App);
 

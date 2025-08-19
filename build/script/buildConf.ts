@@ -39,6 +39,11 @@ function createConfig(
 
 export function runBuildConfig() {
   const config = getEnvConfig();
+  
+  // 手动添加 Mock 相关配置
+  config.VITE_USE_MOCK = 'true';
+  config.VITE_LOGGER_MOCK = 'true';
+  
   const configFileName = getConfigFileName(config);
   createConfig({ config, configName: configFileName });
 }

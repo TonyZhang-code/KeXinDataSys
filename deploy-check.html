@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部署检查页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-link { display: block; margin: 10px 0; padding: 10px; background: #f0f0f0; text-decoration: none; color: #333; }
+        .test-link:hover { background: #e0e0e0; }
+        .status { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>🚀 部署检查页面</h1>
+    
+    <div class="status info">
+        <strong>说明：</strong>这个页面用于测试你的部署是否正常工作。如果以下链接都能正常访问，说明配置正确。
+    </div>
+
+    <h2>📋 路由测试</h2>
+    
+    <h3>基础路由</h3>
+    <a href="/" class="test-link">🏠 首页 (/)</a>
+    <a href="/login" class="test-link">🔐 登录页 (/login)</a>
+    <a href="/dashboard" class="test-link">📊 Dashboard (/dashboard)</a>
+    
+    <h3>子路由测试</h3>
+    <a href="/portal/myapply" class="test-link">📝 我的申请管理 (/portal/myapply)</a>
+    <a href="/portal/catalog" class="test-link">📚 数据目录 (/portal/catalog)</a>
+    <a href="/dashboard/console" class="test-link">🎮 主控台 (/dashboard/console)</a>
+    <a href="/dashboard/workplace" class="test-link">💼 工作台 (/dashboard/workplace)</a>
+    
+    <h3>直接访问测试</h3>
+    <p>以下链接应该能直接访问，无需刷新：</p>
+    <a href="/portal/myapply" class="test-link">🔗 直接访问：我的申请管理</a>
+    <a href="/portal/catalog" class="test-link">🔗 直接访问：数据目录</a>
+    
+    <h2>🔧 配置检查</h2>
+    
+    <div id="config-status" class="status info">
+        正在检查配置...
+    </div>
+    
+    <script>
+        // 检查配置
+        function checkConfig() {
+            const configStatus = document.getElementById('config-status');
+            
+            try {
+                // 检查全局配置
+                if (window.__PRODUCTION__ADMINPRO__CONF__) {
+                    const config = window.__PRODUCTION__ADMINPRO__CONF__;
+                    console.log('生产环境配置:', config);
+                    
+                    if (config.VITE_USE_MOCK === 'true') {
+                        configStatus.innerHTML = `
+                            <strong>✅ 配置检查通过</strong><br>
+                            Mock 数据已启用: ${config.VITE_USE_MOCK}<br>
+                            Mock 日志已启用: ${config.VITE_LOGGER_MOCK}<br>
+                            应用标题: ${config.VITE_GLOB_APP_TITLE}
+                        `;
+                        configStatus.className = 'status success';
+                    } else {
+                        configStatus.innerHTML = `
+                            <strong>❌ 配置检查失败</strong><br>
+                            Mock 数据未启用: ${config.VITE_USE_MOCK}<br>
+                            这可能是导致路由问题的原因
+                        `;
+                        configStatus.className = 'status error';
+                    }
+                } else {
+                    configStatus.innerHTML = `
+                        <strong>❌ 配置检查失败</strong><br>
+                        未找到生产环境配置<br>
+                        请检查 app.config.js 是否正确生成
+                    `;
+                    configStatus.className = 'status error';
+                }
+            } catch (error) {
+                configStatus.innerHTML = `
+                    <strong>❌ 配置检查出错</strong><br>
+                    错误信息: ${error.message}
+                `;
+                configStatus.className = 'status error';
+            }
+        }
+        
+        // 页面加载完成后检查配置
+        window.addEventListener('load', checkConfig);
+        
+        // 测试路由跳转
+        document.querySelectorAll('.test-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                console.log('测试路由:', href);
+                
+                // 模拟路由跳转
+                if (href.startsWith('/')) {
+                    window.history.pushState({}, '', href);
+                    // 这里可以添加更多的路由测试逻辑
+                }
+            });
+        });
+    </script>
+</body>
+</html>
